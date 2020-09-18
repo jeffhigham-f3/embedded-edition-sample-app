@@ -11,7 +11,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 // Set CORS headers
 app.use(function (req, res, next) {
-    res.header("Access-Control-Allow-Origin", ["localhost"]);
+    res.header("Access-Control-Allow-Origin", ["localhost","127.0.0.1"]);
     res.header("Access-Control-Allow-Credentials", true);
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();

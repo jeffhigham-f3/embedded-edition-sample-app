@@ -8,7 +8,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 class RegisterForm extends React.Component {
 
     render() {
-        const {onRegister} = this.props;
+        const { onRegister } = this.props;
         const styles = {
             loginContainer: {
                 backgroundColor: white,
@@ -45,51 +45,69 @@ class RegisterForm extends React.Component {
                 <div style={styles.loginContainer}>
                     <Paper style={styles.paper}>
                         {this.props.loading ?
-                            <div style={{textAlign: "center"}}>
-                                <CircularProgress/>
+                            <div style={{ textAlign: "center" }}>
+                                <CircularProgress />
                             </div> :
                             <form
                                 ref={(elem) => this.form = elem}
                                 onSubmit={e => {
                                     e.preventDefault();
                                     return onRegister({
-                                            name: this.nameElem.value,
-                                            username: this.usernameElem.value,
-                                            password: this.passwordElem.value,
-                                        },
+                                        name: this.nameElem.value,
+                                        username: this.usernameElem.value,
+                                        password: this.passwordElem.value,
+                                        trayId: this.trayIdElem.value,
+                                        uuid: this.uuidElem.value,
+                                    },
                                     );
                                 }
                                 }
                             >
 
-                                <h3 style={{textAlign: "center"}}> New User Form </h3>
+                                <h3 style={{ textAlign: "center" }}> New User Form </h3>
 
                                 <Input
                                     inputRef={(input) => this.nameElem = input}
                                     autoFocus={true}
-                                    label="Name"
-                                    placeholder="Full Name"
+                                    label="name"
+                                    placeholder="name"
                                     fullWidth={true}
-                                    style={{marginBottom: 10}}
+                                    style={{ marginBottom: 10 }}
                                     required
                                 />
 
                                 <Input
                                     inputRef={(input) => this.usernameElem = input}
-                                    label="Username"
-                                    placeholder="Username"
+                                    label="username"
+                                    placeholder="username"
                                     fullWidth={true}
-                                    style={{marginBottom: 10}}
+                                    style={{ marginBottom: 10 }}
                                     required
                                 />
 
                                 <Input
                                     inputRef={(input) => this.passwordElem = input}
-                                    label="Password"
-                                    placeholder="Password"
+                                    label="password"
+                                    placeholder="password"
                                     fullWidth={true}
                                     type="password"
                                     required
+                                />
+
+                                <Input
+                                    inputRef={(input) => this.trayIdElem = input}
+                                    style={{ marginTop: 10 }}
+                                    label="Tray User ID"
+                                    placeholder="trayId"
+                                    fullWidth={true}
+                                />
+
+                                <Input
+                                    inputRef={(input) => this.uuidElem = input}
+                                    style={{ marginTop: 10 }}
+                                    label="Tray User External ID"
+                                    placeholder="uuid"
+                                    fullWidth={true}
                                 />
 
                                 <Button

@@ -110,9 +110,11 @@ module.exports = function (app) {
             ).then(({payload}) => {
                 const solutionInstanceId = solutionInstance.data.createSolutionInstance.solutionInstance.id;
                 const authorizationCode = payload.data.generateAuthorizationCode.authorizationCode;
+                const url = `${solutionPath}/configure/${solutionInstanceId}?code=${authorizationCode}`
+                console.log(url);
                 res.status(200).send({
                     data: {
-                        popupUrl: `${solutionPath}/configure/${solutionInstanceId}?code=${authorizationCode}`
+                        popupUrl: url
                     }
                 });
             })

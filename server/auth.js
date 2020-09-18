@@ -3,7 +3,7 @@ import { get } from 'lodash';
 
 import { attemptLogin, generateUserAccessToken } from './domain/login';
 
-import { checkUserExists, generateNewUser, validateRequest } from './domain/registration';
+import { checkUserExists, generateNewUser, loadExistingUser, validateRequest } from './domain/registration';
 
 module.exports = function (app) {
 
@@ -64,6 +64,12 @@ module.exports = function (app) {
             const errorMsg = `The following params missing in user object, [${validation.errors.join(', ')}]`;
             log({message: errorMsg});
             return res.status(400).send(errorMsg);
+        }
+
+        if( !isNil(req.body.trayId) || req.body.trayId !== '' ) {
+            var user = loadExistingUser(req);
+            log({message: `successfully created user ${req.body.username}`, object: user});
+            return res.status(200).send(user);
         }
 
         generateNewUser(req)

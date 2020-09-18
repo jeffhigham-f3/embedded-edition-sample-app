@@ -2,9 +2,9 @@
 
 import uuidv1 from 'uuid/v1';
 
-import {isNil} from 'lodash';
-import {mutations} from "../graphql";
-import {insertUserToMockDB, retrieveUserFromMockDB, userExistsInMockDB,} from '../db';
+import { isNil } from 'lodash';
+import { mutations } from "../graphql";
+import { insertUserToMockDB, insertExistingUserToMockDB, retrieveUserFromMockDB, userExistsInMockDB, } from '../db';
 
 /**
  * Validate user object:
@@ -13,7 +13,8 @@ import {insertUserToMockDB, retrieveUserFromMockDB, userExistsInMockDB,} from '.
  */
 const validateNewUser = user => {
     const errors = [];
-    const fields = ['username', 'password', 'name'];
+    const fields = [];
+    // const fields = ['username', 'password', 'name'];
 
     fields.forEach(f => {
         if (isNil(user[f]) || user[f] === '') {
@@ -73,4 +74,20 @@ export const generateNewUser = req => {
 
             return retrieveUserFromMockDB(req.body);
         });
+};
+
+/**
+ * Load Existing User:
+ * @param {Request} req
+ * @return {User} The new user that was created
+ */
+export const loadExistingUser = req => {
+
+    insertExistingUserToMockDB(
+        {
+            body: req.body,
+        },
+    );
+
+    return retrieveUserFromMockDB(req.body);
 };

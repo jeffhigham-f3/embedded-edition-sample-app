@@ -10,6 +10,11 @@ if [ -e ".token" ]; then
     MASTER_TOKEN=${MASTER_TOKEN:-$(cat .token)}
 fi
 
+read -p "Enter HTTPS - the services run on SSL (""): " HTTPS
+if [ -e ".https" ]; then
+    HTTPS=${HTTPS:-$(cat .https)}
+fi
+
 cleanup() {
     echo ""
     echo "Killing processes on port 3000 and 3001";
@@ -41,7 +46,7 @@ if [ -z "$MASTER_TOKEN" ]; then
     echo ""
 else
     # Set env variables:
-    export HTTPS=true
+    export HTTPS=$ENDPOINT
     export TRAY_ENDPOINT=$ENDPOINT
     export TRAY_PARTNER=$PARTNER
     export TRAY_MASTER_TOKEN=$MASTER_TOKEN

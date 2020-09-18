@@ -8,10 +8,10 @@ import Typography from '@material-ui/core/Typography';
 
 class LoginForm extends React.Component {
     render() {
-        const {onLogin} = this.props;
+        const { onLogin } = this.props;
         const styles = {
-            field: {marginTop: 10},
-            btnSpan: {marginLeft: 5},
+            field: { marginTop: 10 },
+            btnSpan: { marginLeft: 5 },
             loginContainer: {
                 backgroundColor: white,
                 minWidth: 320,
@@ -69,7 +69,7 @@ class LoginForm extends React.Component {
                             />
                             <Input
                                 inputRef={(input) => this.passwordElem = input}
-                                style={{marginTop: 10}}
+                                style={{ marginTop: 10 }}
                                 label="Password"
                                 placeholder="pass"
                                 fullWidth={true}
@@ -92,7 +92,7 @@ class LoginForm extends React.Component {
                         <Button
                             label="Register"
                             href="/register"
-                            icon={<PersonAdd/>}
+                            icon={<PersonAdd />}
                             color="secondary"
                         >
                             Register New Account
